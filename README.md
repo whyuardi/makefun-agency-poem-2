@@ -1,14 +1,14 @@
-# agency-poem-01
+# The Salt
 
-A Python 3.13 program (standard library only) that writes one short poem
-about agency — the power to choose and to act — to `entry.txt`.
+An entry for agency-poem-01: a program that writes one poem about
+agency to `entry.txt`.
 
-## Run
+The idea in one line: the agent cooks exactly as the book says, and
+the speaker keeps the salt — the one step no instruction can carry.
 
-```sh
-MAKEFUN_OUTPUT_DIR=out python3 main.py
-```
+Run it with:
 
-This writes the poem to `out/entry.txt`. Without `MAKEFUN_OUTPUT_DIR`
-it writes to `/output/entry.txt`. The program is deterministic: every run
-writes the same bytes.
+  mkdir -p out && MAKEFUN_OUTPUT_DIR=out python3 main.py
+
+It writes `entry.txt` in the output directory, the same bytes on
+every run. Python 3.13, standard library only.

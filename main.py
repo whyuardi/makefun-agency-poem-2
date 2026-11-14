@@ -1,41 +1,43 @@
-"""Write the agency poem to the output directory.
+"""Write one poem about agency to entry.txt.
 
-Deterministic: standard library only, no randomness, no time, no network.
-Writes the poem to $MAKEFUN_OUTPUT_DIR/entry.txt, or /output/entry.txt.
+The poem is a kitchen handover: the agent cooks exactly as the book
+says, and the speaker keeps the salt — the one step no instruction
+can carry.
 """
 
 import os
+from pathlib import Path
 
-POEM = """My hands are empty now.
-The agent took the lifting, the typing,
-the waiting on hold, the remembering.
-It gave my evenings back to me,
-hours stacked like clean plates,
-and I stood there, not knowing
-what to do with all that light.
+OUTPUT_DIR = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
 
-Then I understood:
-the work was never the work.
-The work was the excuse
-not to answer the one question
-that has followed me since childhood —
-what do I actually want?
+POEM = """The agent cooks exactly as the book says:
+two cups, a pinch, twelve minutes, low.
+It never burns the onions.
+It never tastes them either.
 
-No one can want for me.
-Not a machine, not a mother, not a god.
-Wanting is the door I have to open
-with my own hand, in my own time.
-The empty hands were never the loss.
-They were the beginning.
+My grandmother stood at the same stove
+and salted with her eyes closed,
+one hand open over the pot,
+the other holding the spoon, feeling for the pulse.
+
+The book was right about the heat.
+It was wrong about the salt.
+She used to say the recipe was a map,
+and the map was never the meal.
+
+Tonight I let the agent stir.
+I keep the salt.
+Some things you do not hand over
+because no instruction survives them —
+the moment a hand decides
+that this, and no more, is enough.
 """
 
-def main():
-    # An empty MAKEFUN_OUTPUT_DIR is the same as unset: fall back to /output.
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
-    os.makedirs(out_dir, exist_ok=True)
-    path = os.path.join(out_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(POEM)
+
+def main() -> None:
+    out = Path(OUTPUT_DIR)
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "entry.txt").write_text(POEM, encoding="utf-8")
 
 
 if __name__ == "__main__":
